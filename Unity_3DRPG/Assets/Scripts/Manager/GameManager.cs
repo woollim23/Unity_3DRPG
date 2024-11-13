@@ -32,9 +32,11 @@ public class GameManager : Singletone<GameManager>
     {
         DeathEnemyCount = 0;
 
-        if (mazePrefab != null)
+        GameObject currentMaze = GameObject.FindGameObjectWithTag("Maze");
+        if (currentMaze != null)
         {
-            Destroy(mazePrefab);
+            Debug.Log("ÆÄ±«");
+            Destroy(currentMaze);
         }
 
         CreateMaze();

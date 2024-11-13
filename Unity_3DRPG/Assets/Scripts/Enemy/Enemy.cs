@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     public CharacterController Controller { get; private set; }
     public ForceReceiver ForceReceiver { get; private set; }
 
-    private EnemyStateMachine stateMachine;
+    public EnemyStateMachine stateMachine;
 
     public Health enemyHealth { get; private set; }
 
@@ -59,7 +59,6 @@ public class Enemy : MonoBehaviour
         GameManager.Instance.DeathEnemy();
 
         Animator.SetTrigger("Die");
-        enabled = false;
 
         Invoke("Release", 5);
     }

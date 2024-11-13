@@ -34,7 +34,10 @@ public class EnemySpawn : MonoBehaviour
 
                 Vector3 position = new Vector3(x - map.gridSize / 2, map.tilePrefab.transform.localScale.y / 2 + 1, z - map.gridSize / 2);
 
-                var enemySpawn = ObjectPoolManager.Instance.pool.Get();
+                GameObject enemySpawn = ObjectPoolManager.Instance.pool.Get();
+                enemySpawn.transform.GetComponent<Health>().IsDie = false;
+                enemySpawn.transform.GetComponent<Health>().health = enemySpawn.transform.GetComponent<Health>().maxHealth;
+                enemySpawn.transform.GetComponent<Enemy>().stateMachine.ChangeState(enemySpawn.transform.GetComponent<Enemy>().stateMachine.IdleState);
                 enemySpawn.transform.position = position;
                 enemyCount++;
             }
