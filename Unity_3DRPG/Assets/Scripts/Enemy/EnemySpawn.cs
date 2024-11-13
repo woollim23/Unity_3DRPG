@@ -33,7 +33,6 @@ public class EnemySpawn : MonoBehaviour
                 }
 
                 Vector3 position = new Vector3(x - map.gridSize / 2, map.tilePrefab.transform.localScale.y / 2 + 1, z - map.gridSize / 2);
-                Debug.Log(position);
                 GameObject enemySpawn = ObjectPoolManager.Instance.pool.Get();
                 enemySpawn.transform.position = position;
                 enemyCount++;
