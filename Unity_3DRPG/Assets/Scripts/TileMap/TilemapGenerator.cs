@@ -14,7 +14,7 @@ public class TilemapGenerator : MonoBehaviour
     public int gridSize;
     public TileType[,] tileMap;
 
-    void Start()
+    private void Awake()
     {
         gridSize = (int)ground.transform.localScale.x * 10;
 
@@ -23,7 +23,6 @@ public class TilemapGenerator : MonoBehaviour
         GenerateMap();
 
         Render();
-
     }
 
     void Render()
