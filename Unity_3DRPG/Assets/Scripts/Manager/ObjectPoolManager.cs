@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -15,7 +15,7 @@ public class ObjectPoolManager : Singletone<ObjectPoolManager>
 
     protected override void Awake()
     {
-        //base.Awake();
+        base.Awake();
         init();
     }
     
@@ -37,26 +37,26 @@ public class ObjectPoolManager : Singletone<ObjectPoolManager>
     private GameObject CreateObject()
     {
         GameObject newObject = Instantiate(objectPrefab);
-        newObject.SetActive(false); // ÃÊ±â¿¡´Â ºñÈ°¼ºÈ­
+        newObject.SetActive(false); // ì´ˆê¸°ì—ëŠ” ë¹„í™œì„±í™”
         return newObject;
     }
-    // »ç¿ë
+    // ì‚¬ìš©
     private void GetObject(GameObject obj)
     {
         obj.SetActive(true);
     }
 
-    // ¹İÈ¯
+    // ë°˜í™˜
     private void ReleaseObject(GameObject obj)
     {
         obj.SetActive(false);
         if (pool.CountInactive >= maxSize)
         {
-            // Ç®¿¡ °ø°£ÀÌ ¾øÀ¸¸é ÀÓ½Ã ¿ÀºêÁ§Æ® ¸®½ºÆ®¿¡ Ãß°¡
+            // í’€ì— ê³µê°„ì´ ì—†ìœ¼ë©´ ì„ì‹œ ì˜¤ë¸Œì íŠ¸ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
             tempObject.Add(obj);
         }
     }
-    // »èÁ¦
+    // ì‚­ì œ
     private void DestroyPool(GameObject obj)
     {
         if (tempObject.Contains(obj))
