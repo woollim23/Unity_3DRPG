@@ -86,6 +86,7 @@ public class PlayerComboAttackState : PlayerAttackState
         if (!stateMachine.IsAttacking) return;
 
         alreadyAppliedCombo = true;
+
     }
 
     void TryApplyForce()

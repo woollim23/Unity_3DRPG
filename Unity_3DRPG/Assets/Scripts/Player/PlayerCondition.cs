@@ -14,7 +14,6 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     public UICondition uiCondition;
 
     Condition health { get { return uiCondition.health; } }
-    Condition stamina { get { return uiCondition.stamina; } }
     Condition experiencePoin { get { return uiCondition.experiencePoint; } }
 
     public event Action onDie;
@@ -24,7 +23,6 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     void Update()
     {
-        stamina.Add(stamina.passiveValue * Time.deltaTime);
 
         if (health.curValue <= 0f)
         {
@@ -57,16 +55,6 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         }
 
         CharacterManager.Instance.Player.stateMachine.MovementSpeed = tempSpeed;
-    }
-    
-    public bool UseStamina(float amount)
-    {
-        if (stamina.curValue - amount < 0)
-        {
-            return false;
-        }
-        stamina.Subtract(amount);
-        return true;
     }
 
     public void Die()

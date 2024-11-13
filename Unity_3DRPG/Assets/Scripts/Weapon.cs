@@ -9,6 +9,8 @@ public class Weapon : MonoBehaviour
     private int damage;
     private float knockback;
 
+    public int weaponLevel = 1;
+
     private List<Collider> alreadyColliderWith = new List<Collider>();
 
     private void OnEnable()
@@ -26,12 +28,12 @@ public class Weapon : MonoBehaviour
 
         if (other.TryGetComponent(out Health health))
         {
+            
             health.TakeDamage(damage);
         }
 
         if(other.TryGetComponent(out IDamagable damagable))
         {
-            Debug.Log(damage);
             damagable.TakePhysicalDamage(damage);
         }
 
@@ -44,7 +46,7 @@ public class Weapon : MonoBehaviour
 
     public void SetAttack(int damage, float knockback)
     {
-        this.damage = damage;
+        this.damage = damage * weaponLevel;
         this.knockback = knockback;
     }
 }
