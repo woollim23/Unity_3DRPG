@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,12 +11,18 @@ public class GameManager : Singletone<GameManager>
 
     [SerializeField] private GameObject mazePrefab;
 
+    [SerializeField] private TextMeshProUGUI UIStageLevel;
+
 
     void Start()
     {
         StageLevel = 1;
         NewStage();
+    }
 
+    public void ShowLevelText()
+    {
+        UIStageLevel.text = "Stage : " + StageLevel.ToString();
     }
 
     public void StageClear()
@@ -32,7 +39,8 @@ public class GameManager : Singletone<GameManager>
 
     public void NewStage()
     {
-        
+
+        ShowLevelText();
         DeathEnemyCount = 0;
 
         GameObject currentMaze = GameObject.FindGameObjectWithTag("Maze");
