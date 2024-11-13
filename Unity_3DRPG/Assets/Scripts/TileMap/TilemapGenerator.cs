@@ -17,7 +17,6 @@ public class TilemapGenerator : MonoBehaviour
     private void Awake()
     {
         gridSize = (int)ground.transform.localScale.x * 10;
-        Debug.Log(GameManager.Instance.StageLevel);
         tileMap = new TileType[100, 100];
 
         GenerateMap();
@@ -105,14 +104,4 @@ public class TilemapGenerator : MonoBehaviour
             }
         }
     }
-
-
-    public void ResetMap()
-    {
-        tileMap = new TileType[100, 100];
-
-        GenerateMap();
-        Render();
-    }
-
 }

@@ -38,7 +38,6 @@ public class GameManager : Singletone<GameManager>
         GameObject currentMaze = GameObject.FindGameObjectWithTag("Maze");
         if (currentMaze != null)
         {
-            Debug.Log("ÆÄ±«");
             Destroy(currentMaze);
         }
 

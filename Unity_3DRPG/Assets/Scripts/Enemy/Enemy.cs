@@ -59,12 +59,18 @@ public class Enemy : MonoBehaviour
         GameManager.Instance.DeathEnemy();
 
         Animator.SetTrigger("Die");
+      
 
         Invoke("Release", 5);
     }
 
     void Release()
     {
+        this.gameObject.SetActive(false);
+        enemyHealth.health = enemyHealth.maxHealth;
+        enemyHealth.IsDie = false;
+        stateMachine.ChangeState(stateMachine.IdleState);
         ObjectPoolManager.Instance.pool.Release(this.gameObject);
+        
     }
 }
