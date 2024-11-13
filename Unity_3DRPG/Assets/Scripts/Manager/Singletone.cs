@@ -1,5 +1,5 @@
 using UnityEngine;
-public class Singletone<T> : MonoBehaviour where T : Component
+public abstract class Singletone<T> : MonoBehaviour where T : Component
 {
     private static T _instance;
 
@@ -17,12 +17,11 @@ public class Singletone<T> : MonoBehaviour where T : Component
                     _instance = singletoneObj.AddComponent<T>();
                 }
             }
-
             return _instance;
         }
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         if (Instance != null)
             DontDestroyOnLoad(Instance);

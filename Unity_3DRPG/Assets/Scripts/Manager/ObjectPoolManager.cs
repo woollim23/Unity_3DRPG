@@ -13,10 +13,12 @@ public class ObjectPoolManager : Singletone<ObjectPoolManager>
     List<GameObject> tempObject;
     public IObjectPool<GameObject> pool { get; private set; }
 
-    void Awake()
+    protected override void Awake()
     {
+        //base.Awake();
         init();
     }
+    
 
     private void init()
     {

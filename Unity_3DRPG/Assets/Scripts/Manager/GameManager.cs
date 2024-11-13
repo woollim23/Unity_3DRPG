@@ -10,10 +10,12 @@ public class GameManager : Singletone<GameManager>
 
     [SerializeField] private GameObject mazePrefab;
 
-    void Awake()
+
+    void Start()
     {
         StageLevel = 1;
         NewStage();
+
     }
 
     public void StageClear()
@@ -30,6 +32,7 @@ public class GameManager : Singletone<GameManager>
 
     public void NewStage()
     {
+        
         DeathEnemyCount = 0;
 
         GameObject currentMaze = GameObject.FindGameObjectWithTag("Maze");
