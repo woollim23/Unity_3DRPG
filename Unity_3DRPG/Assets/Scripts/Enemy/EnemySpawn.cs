@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class EnemySpawn : MonoBehaviour
 {
@@ -15,7 +12,7 @@ public class EnemySpawn : MonoBehaviour
         // TODO : 스테이지 레벨 만큼 적생, 최대 스테이지 레벨만큼 생성(오브젝트 풀링도 괜찮으려나?)
         // TODO : 스테이지 레벨은 게임 매니저에 저장해야겠다
         enemyCount = 0;
-        stageLevel = 2;
+        stageLevel = 1;
 
         EnemySpawnOnMap();
     }

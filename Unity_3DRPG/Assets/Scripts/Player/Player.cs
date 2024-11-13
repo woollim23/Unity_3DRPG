@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
 
     public Health health { get; private set; }
 
+    [field: SerializeField] public Weapon Weapon { get; private set; }
+
     private void Awake()
     {
         AnimationData.Initialize();

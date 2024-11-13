@@ -14,6 +14,7 @@ public class PlayerComboAttackState : PlayerAttackState
 
     public override void Enter()
     {
+        stateMachine.MovementSpeedModifier = 0;
         base.Enter();
         StartAnimation(stateMachine.Player.AnimationData.ComboAttackParameterHash);
 
@@ -29,6 +30,7 @@ public class PlayerComboAttackState : PlayerAttackState
     {
         base.Exit();
         StopAnimation(stateMachine.Player.AnimationData.ComboAttackParameterHash);
+
 
         if(!alreadyAppliedCombo)
         {
@@ -56,6 +58,9 @@ public class PlayerComboAttackState : PlayerAttackState
                 // ¥Ô«Œ Ω√µµ
                 TryApplyForce();
             }
+
+            stateMachine.Player.Weapon.SetAttack(attackInfoData.Damage, attackInfoData.Force);
+            stateMachine.Player.Weapon.gameObject.SetActive(true);
         }
         else
         {
@@ -67,6 +72,7 @@ public class PlayerComboAttackState : PlayerAttackState
             else
             {
                 stateMachine.ChangeState(stateMachine.IdleState);
+                stateMachine.Player.Weapon.gameObject.SetActive(false);
             }
         }
     }
