@@ -58,5 +58,12 @@ public class Enemy : MonoBehaviour
     {
         Animator.SetTrigger("Die");
         enabled = false;
+
+        Invoke("Release", 5);
+    }
+
+    void Release()
+    {
+        ObjectPoolManager.Instance.pool.Release(this.gameObject);
     }
 }
