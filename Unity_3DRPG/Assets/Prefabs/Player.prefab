@@ -2443,7 +2443,7 @@ GameObject:
   - component: {fileID: 8380772731668076210}
   - component: {fileID: 5727460249556787888}
   - component: {fileID: 8010310000783270736}
-  - component: {fileID: 8545409562011717112}
+  - component: {fileID: 3673231597004893040}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2519,6 +2519,7 @@ MonoBehaviour:
     attackParameterName: '@Attack'
     comboAttackParameterName: ComboAttack
     baseAttackParameterName: BaseAttack
+  condition: {fileID: 3673231597004893040}
   <Weapon>k__BackingField: {fileID: 8062653095388364483}
 --- !u!114 &5727460249556787888
 MonoBehaviour:
@@ -2546,7 +2547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 8744595893537783401}
   drag: 0.3
---- !u!114 &8545409562011717112
+--- !u!114 &3673231597004893040
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2555,12 +2556,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7967824179938054690}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2aea176297d11a84ebf0b5b8d2225045, type: 3}
+  m_Script: {fileID: 11500000, guid: 658d8d943422ad14090c60c30708cef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  health: 0
-  IsDie: 0
+  uiCondition: {fileID: 0}
 --- !u!1 &8036217877074648521
 GameObject:
   m_ObjectHideFlags: 0

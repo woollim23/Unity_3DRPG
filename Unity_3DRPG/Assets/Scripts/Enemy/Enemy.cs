@@ -31,7 +31,6 @@ public class Enemy : MonoBehaviour
         ForceReceiver = GetComponent<ForceReceiver>();
 
         stateMachine = new EnemyStateMachine(this);
-
         enemyHealth = GetComponent<Health>();
     }
 
