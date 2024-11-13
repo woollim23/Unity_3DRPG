@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public ForceReceiver ForceReceiver { get; private set; }
     public PlayerStateMachine stateMachine;
 
+    public PlayerCondition condition;
     public Health health { get; private set; }
 
     private void Awake()
@@ -26,6 +27,8 @@ public class Player : MonoBehaviour
         health = GetComponent<Health>();
 
         stateMachine = new PlayerStateMachine(this);
+
+        condition = GetComponent<PlayerCondition>();
     }
 
     void Start()
