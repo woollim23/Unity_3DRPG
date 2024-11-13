@@ -14,16 +14,14 @@ public class TilemapGenerator : MonoBehaviour
     public int gridSize;
     public TileType[,] tileMap;
 
-    void Start()
+    private void Awake()
     {
         gridSize = (int)ground.transform.localScale.x * 10;
-
         tileMap = new TileType[100, 100];
 
         GenerateMap();
 
         Render();
-
     }
 
     void Render()
@@ -106,22 +104,4 @@ public class TilemapGenerator : MonoBehaviour
             }
         }
     }
-
-
-    void Place3DTiles()
-    {
-        for (int x = 0; x <= gridSize; x++)
-        {
-            for (int z = 0; z <= gridSize; z++)
-            {
-                if ((x) % 2 != 0)
-                {
-                    // 미로생성 테스트중
-                    Vector3 position = new Vector3(x - gridSize / 2, 1f, z - gridSize / 2);
-                    Instantiate(tilePrefab, position, Quaternion.identity, transform);
-                }
-            }
-        }
-    }
-
 }

@@ -12,9 +12,10 @@ public class Player : MonoBehaviour
     public CharacterController Controller { get; private set; }
     public ForceReceiver ForceReceiver { get; private set; }
     public PlayerStateMachine stateMachine;
-
     public PlayerCondition condition;
-    public Health health { get; private set; }
+
+
+    [field: SerializeField] public Weapon Weapon { get; private set; }
 
     private void Awake()
     {
@@ -24,10 +25,8 @@ public class Player : MonoBehaviour
         Controller = GetComponent<CharacterController>();
         ForceReceiver = GetComponent<ForceReceiver>();
 
-        health = GetComponent<Health>();
 
         stateMachine = new PlayerStateMachine(this);
-
         condition = GetComponent<PlayerCondition>();
     }
 
@@ -35,7 +34,8 @@ public class Player : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         stateMachine.ChangeState(stateMachine.IdleState);
-        health.OnDie += OnDie;
+
+        condition.onDie += OnDie;
     }
 
     void Update()
@@ -52,6 +52,5 @@ public class Player : MonoBehaviour
     void OnDie()
     {
         Animator.SetTrigger("Die");
-        enabled = false;
     }
 }

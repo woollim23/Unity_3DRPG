@@ -15,7 +15,9 @@ public class Enemy : MonoBehaviour
     public CharacterController Controller { get; private set; }
     public ForceReceiver ForceReceiver { get; private set; }
 
-    private EnemyStateMachine stateMachine;
+    public EnemyStateMachine stateMachine;
+
+    public Health enemyHealth { get; private set; }
 
     [field: SerializeField] public Weapon Weapon { get; private set; }
 
@@ -29,12 +31,15 @@ public class Enemy : MonoBehaviour
         ForceReceiver = GetComponent<ForceReceiver>();
 
         stateMachine = new EnemyStateMachine(this);
+        enemyHealth = GetComponent<Health>();
     }
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         stateMachine.ChangeState(stateMachine.IdleState);
+
+        enemyHealth.OnDie += OnDie;
     }
 
     private void Update()
@@ -46,5 +51,25 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         stateMachine.PhysicsUpdate();
+    }
+
+    void OnDie()
+    {
+        GameManager.Instance.DeathEnemy();
+
+        Animator.SetTrigger("Die");
+      
+
+        Invoke("Release", 5);
+    }
+
+    void Release()
+    {
+        this.gameObject.SetActive(false);
+        enemyHealth.health = enemyHealth.maxHealth;
+        enemyHealth.IsDie = false;
+        stateMachine.ChangeState(stateMachine.IdleState);
+        ObjectPoolManager.Instance.pool.Release(this.gameObject);
+        
     }
 }

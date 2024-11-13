@@ -9,6 +9,8 @@ public class Weapon : MonoBehaviour
     private int damage;
     private float knockback;
 
+    public int weaponLevel = 1;
+
     private List<Collider> alreadyColliderWith = new List<Collider>();
 
     private void OnEnable()
@@ -18,6 +20,7 @@ public class Weapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if (other == myCollider) return;
         if (alreadyColliderWith.Contains(other)) return;
 
@@ -25,7 +28,13 @@ public class Weapon : MonoBehaviour
 
         if (other.TryGetComponent(out Health health))
         {
+            
             health.TakeDamage(damage);
+        }
+
+        if(other.TryGetComponent(out IDamagable damagable))
+        {
+            damagable.TakePhysicalDamage(damage);
         }
 
         if (other.TryGetComponent(out ForceReceiver forceReceiver))
@@ -37,7 +46,7 @@ public class Weapon : MonoBehaviour
 
     public void SetAttack(int damage, float knockback)
     {
-        this.damage = damage;
+        this.damage = damage * weaponLevel;
         this.knockback = knockback;
     }
 }

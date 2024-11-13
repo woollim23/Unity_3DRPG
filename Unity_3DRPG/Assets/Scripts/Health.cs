@@ -3,10 +3,9 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 100;
-    private int health;
+    [SerializeField] public int maxHealth;
+    [SerializeField] public int health;
     public event Action OnDie;
-    public event Action OnTakeDamage;
 
     public bool IsDie = false;
 
@@ -21,7 +20,6 @@ public class Health : MonoBehaviour
     public void TakeDamage(int damage)
     {
         if (health == 0) return;
-
         health = Mathf.Max(health - damage, 0);
 
         if (health == 0)
@@ -29,7 +27,5 @@ public class Health : MonoBehaviour
             IsDie = true;
             OnDie?.Invoke();
         }
-
-        Debug.Log(health);
     }
 }
