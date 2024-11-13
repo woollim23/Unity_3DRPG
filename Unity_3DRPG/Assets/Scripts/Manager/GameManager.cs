@@ -13,16 +13,14 @@ public class GameManager : Singletone<GameManager>
     void Awake()
     {
         StageLevel = 1;
-        DeathEnemyCount = 0;
-
-        CreateMaze();
+        NewStage();
     }
 
     public void StageClear()
     {
         StageLevelUp();
 
-        Invoke("NewStage", 10);
+        Invoke("NewStage", 6);
     }
 
     private void StageLevelUp()
@@ -34,10 +32,9 @@ public class GameManager : Singletone<GameManager>
     {
         DeathEnemyCount = 0;
 
-        GameObject currentMaze = GameObject.Find("Maze");
-        if (currentMaze != null)
+        if (mazePrefab != null)
         {
-            Destroy(currentMaze);
+            Destroy(mazePrefab);
         }
 
         CreateMaze();
@@ -45,14 +42,7 @@ public class GameManager : Singletone<GameManager>
 
     private void CreateMaze()
     {
-        if (mazePrefab != null)
-        {
-            Instantiate(mazePrefab, Vector3.zero, Quaternion.identity);
-        }
-        else
-        {
-            Debug.LogError("Maze prefab is not assigned!");
-        }
+        Instantiate(mazePrefab, Vector3.zero, Quaternion.identity);
     }
 
     public void DeathEnemy()

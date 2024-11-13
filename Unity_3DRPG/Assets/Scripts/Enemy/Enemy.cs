@@ -56,6 +56,8 @@ public class Enemy : MonoBehaviour
 
     void OnDie()
     {
+        GameManager.Instance.DeathEnemy();
+
         Animator.SetTrigger("Die");
         enabled = false;
 
