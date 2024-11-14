@@ -1,14 +1,17 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [field: SerializeField] public PlayerSO Data { get; private set; }
+    public ItemData itemData;
+    public Action addItem;
 
     [field: Header("Animations")]
     [field: SerializeField] public PlayerAnimationData AnimationData {  get; private set; }
 
     public Animator Animator { get; private set; }
-    public PlayerController Input {  get; private set; }
+    public PlayerController Input;
     public CharacterController Controller { get; private set; }
     public ForceReceiver ForceReceiver { get; private set; }
     public PlayerStateMachine stateMachine;

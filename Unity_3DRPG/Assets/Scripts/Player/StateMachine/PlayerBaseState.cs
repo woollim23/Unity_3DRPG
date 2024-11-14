@@ -32,6 +32,7 @@ public class PlayerBaseState : IState
         input.playerActions.Jump.started += OnJumpStarted;
         input.playerActions.Attack.performed += OnAttackPerformed;
         input.playerActions.Attack.canceled += OnAttackCanceled;
+        input.playerActions.Inventory.performed += OnInventory;
     }
 
     protected virtual void RemoveInputActionsCallbacks()
@@ -42,6 +43,7 @@ public class PlayerBaseState : IState
         input.playerActions.Jump.started -= OnJumpStarted;
         input.playerActions.Attack.performed -= OnAttackPerformed;
         input.playerActions.Attack.canceled -= OnAttackCanceled;
+        input.playerActions.Inventory.performed -= OnInventory;
     }
 
     public virtual void HandleInput()
@@ -82,6 +84,12 @@ public class PlayerBaseState : IState
     protected virtual void OnAttackCanceled(InputAction.CallbackContext context)
     {
         stateMachine.IsAttacking = false;
+    }
+
+    protected virtual void OnInventory(InputAction.CallbackContext context)
+    {
+        CharacterManager.Instance.Player.condition.inventory?.Invoke();
+        
     }
 
     protected void StartAnimation(int animatorHash)

@@ -12,9 +12,9 @@ public interface IDamagable
 public class PlayerCondition : MonoBehaviour, IDamagable
 {
     public UICondition uiCondition;
-
-    Condition health { get { return uiCondition.health; } }
-    Condition experiencePoin { get { return uiCondition.experiencePoint; } }
+    public Action inventory;
+    public Condition health { get { return uiCondition.health; } }
+    public Condition experiencePoin { get { return uiCondition.experiencePoint; } }
 
     public event Action onDie;
 
@@ -23,7 +23,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     void Update()
     {
-
+        
         if (health.curValue <= 0f)
         {
             Die();
@@ -32,7 +32,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public void Heal(float amount)
     {
-        health.Add(amount);
+        CharacterManager.Instance.Player.condition.health.Add(amount);
     }
     
     public void Doping(float value, float duration)

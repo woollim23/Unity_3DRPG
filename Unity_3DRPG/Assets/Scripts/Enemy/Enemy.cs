@@ -10,6 +10,9 @@ public class Enemy : MonoBehaviour
     [field: Header("Animations")]
     [field: SerializeField] public PlayerAnimationData AnimationData { get; private set; }
 
+    [field: Header("DropItems")]
+    [field: SerializeField] public ItemData[] dropOnDeath;
+
     public Rigidbody Rigidbody { get; private set; }
     public Animator Animator { get; private set; }
     public CharacterController Controller { get; private set; }
@@ -36,7 +39,6 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         stateMachine.ChangeState(stateMachine.IdleState);
 
         enemyHealth.OnDie += OnDie;
@@ -56,7 +58,7 @@ public class Enemy : MonoBehaviour
     void OnDie()
     {
         GameManager.Instance.DeathEnemy();
-
+        GiveItem();
         Animator.SetTrigger("Die");
       
 
@@ -71,5 +73,13 @@ public class Enemy : MonoBehaviour
         stateMachine.ChangeState(stateMachine.IdleState);
         ObjectPoolManager.Instance.pool.Release(this.gameObject);
         
+    }
+
+    void GiveItem()
+    {
+        CharacterManager.Instance.Player.itemData = dropOnDeath[0];
+        CharacterManager.Instance.Player.addItem?.Invoke();
+        CharacterManager.Instance.Player.itemData = dropOnDeath[1];
+        CharacterManager.Instance.Player.addItem?.Invoke();
     }
 }

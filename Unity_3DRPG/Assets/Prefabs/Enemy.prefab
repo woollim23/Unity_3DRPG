@@ -966,6 +966,9 @@ MonoBehaviour:
     attackParameterName: '@Attack'
     comboAttackParameterName: ComboAttack
     baseAttackParameterName: BaseAttack
+  dropOnDeath:
+  - {fileID: 11400000, guid: 765e7a3253bd44a4eb58088d283a6fb8, type: 2}
+  - {fileID: 11400000, guid: e01847f67241891409dc55e175a28842, type: 2}
   <Weapon>k__BackingField: {fileID: 6518345455360639544}
 --- !u!114 &3415974657240628302
 MonoBehaviour:
@@ -980,6 +983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
+  health: 0
   IsDie: 0
 --- !u!1 &3178912755663944628
 GameObject:
